@@ -1,0 +1,27 @@
+// Function to approximate definite integral using Monte Carlo method
+function monteCarloIntegration(func, lowerBound, upperBound, numSamples) {
+  let sum = 0;
+  for (let i = 0; i < numSamples; i++) {
+    let x = lowerBound + Math.random() * (upperBound - lowerBound); // Corrected the random number generation
+    sum += func(x);
+  }
+  let average = sum / numSamples; // Corrected the calculation of the average
+  let integral = average * (upperBound - lowerBound); // Corrected the integral calculation
+  return integral;
+}
+
+// Example function f(x) = x^2
+function squareFunc(x) {
+  return x * x; // Corrected the function definition
+}
+
+// Define lower and upper bounds of integration
+let lowerLimit = 0;
+let upperLimit = 1;
+
+// Number of random samples for Monte Carlo method
+let samples = 100000;
+
+// Approximate the integral
+let result = monteCarloIntegration(squareFunc, lowerLimit, upperLimit, samples);
+console.log(`Approximated value of integral: ${result}`);
